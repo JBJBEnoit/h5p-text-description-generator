@@ -115,6 +115,7 @@ function dropHandler(ev) {
     copyText.select();
     copyText.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(copyText.value);
+    window.parent.postMessage({ content: copyText.value }, "*");
     alert("Copied to clipboard");
   }
 
