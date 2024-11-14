@@ -23,50 +23,44 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -->
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>H5P Description Generator</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="images/oer_logo.ico" />
-  </head>
 
-  <body>
-    <div id="wrap">
-      <h1>H5P Description Generator</h1>
-      <div id="drop_container">
-        <div id="drop_zone">
-          <p>Drop your H5P file here</p>
-          <p>or click to browse for file</p>
-        </div>
-      </div>
-      <div id="output_container">
-        <label for="preview_container" class="preview_label"
-          >Text Preview</label
-        >
-        <div id="preview_container" class="preview"></div>
-        <textarea
-          id="html_output"
-          placeholder="Question HTML"
-          disabled
-        ></textarea>
-        <button id="copy_text" class="copy_btn">Copy Description</button>
-        <label for="answer_preview" class="preview_label">Solution Preview</label>
-        <div id="answer_preview" class="preview"></div>
-        <textarea
-          id="answer_output"
-          placeholder="Answer HTML"
-          disabled
-        ></textarea>
-        <button id="copy_answer" class="copy_btn">Copy Solution</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>H5P Description Generator</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/oer_logo.ico" />
+</head>
+
+<body>
+  <div id="wrap">
+    <h1>H5P Description Generator</h1>
+    <div id="drop_container">
+      <div id="drop_zone">
+        <p>Drop your H5P file here</p>
+        <p>or click to browse for file</p>
       </div>
     </div>
-    <footer>
-        <div>
-            H5P Description Generator by Jason Benoit is open source software made available under the <a href="https://choosealicense.com/licenses/mit/">MIT License</a>.
-        </div>
-    </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
-    <script type="module" src="/script/app.js"></script>
-  </body>
+    <div id="output_container">
+      <label for="preview_container" class="preview_label">Text Preview</label>
+      <div id="preview_container" class="preview"></div>
+      <textarea id="html_output" placeholder="Question HTML" disabled></textarea>
+      <button id="copy_text" class="copy_btn">Copy Description</button>
+      <label for="answer_preview" class="preview_label">Solution Preview</label>
+      <div id="answer_preview" class="preview"></div>
+      <textarea id="answer_output" placeholder="Answer HTML" disabled></textarea>
+      <button id="copy_answer" class="copy_btn">Copy Solution</button>
+    </div>
+  </div>
+  <footer>
+    <div>
+      H5P Description Generator by Jason Benoit is open source software made
+      available under the
+      <a href="https://choosealicense.com/licenses/mit/">MIT License</a>.
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+  <script type="module" src="/script/app.js"></script>
+</body>
+
 </html>

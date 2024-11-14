@@ -2,6 +2,8 @@ import DragText from "./content_types/dragText.js";
 import Blanks from "./content_types/blanks.js";
 import SingleChoiceSet from "./content_types/singleChoiceSet.js";
 import MultiChoice from "./content_types/multiChoice.js";
+import Flashcards from "./content_types/flashCards.js";
+import Dialogcards from "./content_types/dialogCards.js";
 import H5P2Text from "./h5p2Text.js";
 
 function isH5PFile(file) {
@@ -75,18 +77,15 @@ const fileUploader = () => {
 const unzipAndReadH5PFile = async (file) => {
   let zip = new JSZip();
   let loaded_files = await zip.loadAsync(file);
-  const contentJsonStr = await loaded_files.files["content/content.json"].async(
-    "string"
-  );
-  const h5pJsonStr = await loaded_files.files["h5p.json"].async("string");
-  const h5pJson = JSON.parse(h5pJsonStr);
-  const library = h5pJson.mainLibrary.replace("H5P.", "");
+
   const converter = new H5P2Text();
   try {
     converter.addContentType(new DragText());
     converter.addContentType(new Blanks());
     converter.addContentType(new SingleChoiceSet());
     converter.addContentType(new MultiChoice());
+    converter.addContentType(new Flashcards());
+    converter.addContentType(new Dialogcards());
   } catch (err) {
     console.log(err);
   }
