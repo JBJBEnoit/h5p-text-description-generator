@@ -1,10 +1,18 @@
+:root {
+    --primary-color: #4e4e91;
+    --secondary-color: #3c3c7a;
+    --tertiary-color: #2a2a5a;
+    --light-color: #ccc;
+    --dark-color: #666;
+}
+
 body {
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
     font-family: Arial, sans-serif;
-    background-color: #2a2a5a;;
+    background-color: var(--tertiary-color);
 }
 
 #wrap {
@@ -17,6 +25,11 @@ body {
     border-radius: 15px;
     width: 60%;
     min-height: 70vh;
+}
+
+h1 {
+    color: var(--tertiary-color);
+    margin-top: 20px;
 }
 
 #drop_container {
@@ -60,7 +73,7 @@ body {
 
 .copy_btn {
 
-    background-color: #4e4e91;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 5px;
@@ -71,18 +84,18 @@ body {
 }
 
 .copy_btn:hover {
-    background-color: #3c3c7a;
+    background-color: var(--secondary-color);
 }
 
 .copy_btn:active {
-    background-color: #2a2a5a;
+    background-color: var(--tertiary-color);
     box-shadow: none;
 }
 
 #output_container textarea {
     width: 80%;
     min-height: 20vh;
-    border-color: #666;
+    border-color: var(--dark-color);
 }
 
 #output_container > *:not(label) {
@@ -94,7 +107,7 @@ body {
 .preview {
     width: 80%;
     height: auto;
-    border: 1px solid #666;
+    border: 1px solid var(--dark-color);
 }
 
 /* .preview:empty {
@@ -107,7 +120,7 @@ label.preview_label {
     top: 1.05rem;
     background-color: white;
     font-size: small;
-    color: #666;
+    color: var(--dark-color);
 }
 
 footer {
