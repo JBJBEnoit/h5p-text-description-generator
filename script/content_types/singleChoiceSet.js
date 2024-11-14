@@ -8,7 +8,7 @@ export default class SingleChoiceSet extends ContentType {
 
     parse(contentJson) {
         const content = JSON.parse(contentJson);
-        const questions = content.questions;
+        const questions = content.choices;
         const details = this.createDetailsElement();
         const questionList = document.createElement('ol');
         const correctAnswersList = document.createElement('ol');
