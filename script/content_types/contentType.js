@@ -9,7 +9,7 @@ export default class ContentType {
     createDetailsElement(){
         const details = document.createElement('details');
         const summary = document.createElement('summary');
-        summary.innerHTML = '<strong>Text Version</strong>';
+        summary.innerHTML = '<strong>Text Description</strong>';
         details.appendChild(summary);
         return details;
     }
