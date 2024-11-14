@@ -1,6 +1,7 @@
 import DragText from "./content_types/dragText.js";
 import Blanks from "./content_types/blanks.js";
 import SingleChoiceSet from "./content_types/singleChoiceSet.js";
+import MultiChoice from "./content_types/multiChoice.js";
 import H5P2Text from "./h5p2Text.js";
 
 function isH5PFile(file) {
@@ -85,6 +86,7 @@ const unzipAndReadH5PFile = async (file) => {
     converter.addContentType(new DragText());
     converter.addContentType(new Blanks());
     converter.addContentType(new SingleChoiceSet());
+    converter.addContentType(new MultiChoice());
   } catch (err) {
     console.log(err);
   }

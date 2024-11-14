@@ -6,6 +6,16 @@ export default class ContentType {
         return result;
     }
 
+    stripEnclosingTags(html) {
+        const div = document.createElement('div');
+        div.innerHTML = html;
+        if (div.firstChild.nodeName === 'P' || div.firstChild.nodeName === 'DIV') {
+
+            return div.firstChild.innerHTML;
+        }
+        return div.innerHTML;
+    }
+
     createDetailsElement(){
         const details = document.createElement('details');
         const summary = document.createElement('summary');

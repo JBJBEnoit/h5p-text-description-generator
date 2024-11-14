@@ -33,7 +33,7 @@ export default class SingleChoiceSet extends ContentType {
             questionList.appendChild(questionElement);
 
             const correctAnswer = document.createElement('li');
-            correctAnswer.textContent = String.fromCharCode(97 + correctAnswerIndex);
+            correctAnswer.textContent = String.fromCharCode(97 + correctAnswerIndex) + '. ' + this.stripHtml(correctAnswerStr);
             correctAnswersList.appendChild(correctAnswer);
             details.appendChild(questionList);
             // if (index < questions.length - 1) {
