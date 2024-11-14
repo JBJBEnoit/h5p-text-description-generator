@@ -3,128 +3,122 @@ import Blanks from "./content_types/blanks.js";
 import H5P2Text from "./h5p2Text.js";
 
 function isH5PFile(file) {
-    return file.name.match(/.+\.h5p$/);
+  return file.name.match(/.+\.h5p$/);
 }
 
 // handle files dragged and dropped into text editor
 function dropHandler(ev) {
-    console.log("File(s) dropped");
+  console.log("File(s) dropped");
 
-    // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();  
-    if (ev.dataTransfer.items) {
-        let item = ev.dataTransfer.items[0];
-        if (item.kind === "file") {
-          const file = item.getAsFile();
+  // Prevent default behavior (Prevent file from being opened)
+  ev.preventDefault();
+  if (ev.dataTransfer.items) {
+    let item = ev.dataTransfer.items[0];
+    if (item.kind === "file") {
+      const file = item.getAsFile();
 
-          // If isn't H5P file
-          if (!isH5PFile(file))
-          {
+      // If isn't H5P file
+      if (!isH5PFile(file)) {
+        //Some kind of error message
+        alert(file.name + " is not an H5P file");
+        return;
+      }
 
-            //Some kind of error message
-            alert(file.name + " is not an H5P file");
-              return;
-          }
+      // Check and replace `.h5p` extension with `.zip`
+      const newFileName = file.name.replace(/\.h5p$/, ".zip");
+      const zipFile = new File([file], newFileName, {
+        type: "application/zip",
+      });
 
-            // Check and replace `.h5p` extension with `.zip`
-            const newFileName = file.name.replace(/\.h5p$/, ".zip");
-            const zipFile = new File([file], newFileName, { type: "application/zip" });
-
-          // Otherwise it's an H5P file
-          unzipAndReadH5PFile(zipFile);
-          
-        }
-        
-    } else {
-      // Use DataTransfer interface to access the file(s)
-      readFile(ev.dataTransfer.files[0]);
-        
+      // Otherwise it's an H5P file
+      unzipAndReadH5PFile(zipFile);
     }
+  } else {
+    // Use DataTransfer interface to access the file(s)
+    readFile(ev.dataTransfer.files[0]);
   }
+}
 
-  // handle files being dragged over text editor    
-  function dragOverHandler(ev) {
-    console.log("File(s) in drop zone");
+// handle files being dragged over text editor
+function dragOverHandler(ev) {
+  console.log("File(s) in drop zone");
 
-    // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
-  }
-  
-  // upload file
-  const fileUploader = () => {
-      
-      let input = document.createElement('input');
-      input.type = 'file';
+  // Prevent default behavior (Prevent file from being opened)
+  ev.preventDefault();
+}
 
-      input.onchange = async e => { 
+// upload file
+const fileUploader = () => {
+  let input = document.createElement("input");
+  input.type = "file";
 
-         // getting a hold of the file reference
-         let file = e.target.files[0];
-            if (!isH5PFile(file))
-              {
-                //Some kind of error message
-                alert(file.name + " is not an H5P file");
-                return;
-                }
+  input.onchange = async (e) => {
+    // getting a hold of the file reference
+    let file = e.target.files[0];
+    if (!isH5PFile(file)) {
+      //Some kind of error message
+      alert(file.name + " is not an H5P file");
+      return;
+    }
 
-              unzipAndReadH5PFile(file);
-              return;
-           }  
-      
-
-      // activate the upload
-      input.click();
+    unzipAndReadH5PFile(file);
+    return;
   };
 
-  // unzip FOL Help file and read into images and state variables
-  const unzipAndReadH5PFile = async (file) => {
-      
-      let zip = new JSZip();
-      let loaded_files = await zip.loadAsync(file); 
-      const contentJsonStr = await loaded_files.files['content/content.json'].async('string');
-      const h5pJsonStr = await loaded_files.files['h5p.json'].async('string');
-      const h5pJson = JSON.parse(h5pJsonStr);
-      const library = h5pJson.mainLibrary.replace('H5P.', '');
-      const converter = new H5P2Text();
-      try{
-        converter.addContentType(new DragText());
-        converter.addContentType(new Blanks());
-      }
-      catch(err){
-        console.log(err);
-      }
-      
-      try{
-        const {accordionHtml, solution} = await converter.parse(loaded_files);
-        document.getElementById('preview_container').innerHTML = accordionHtml;
-        document.getElementById('html_output').value = accordionHtml;
-        document.getElementById('answer_preview').innerHTML = solution;
-        document.getElementById('answer_output').value = solution;
-        console.log(accordionHtml);
-        console.log(solution);
-      }
-      catch(err){
-        console.log(err);
-      }
-      
-      
-  };
+  // activate the upload
+  input.click();
+};
 
-  const copyContents = (target) => {
-    let copyText = document.getElementById(target);
-    copyText.select();
-    copyText.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(copyText.value);
-    window.parent.postMessage({ content: copyText.value }, "*");
-    alert("Copied to clipboard");
+// unzip FOL Help file and read into images and state variables
+const unzipAndReadH5PFile = async (file) => {
+  let zip = new JSZip();
+  let loaded_files = await zip.loadAsync(file);
+  const contentJsonStr = await loaded_files.files["content/content.json"].async(
+    "string"
+  );
+  const h5pJsonStr = await loaded_files.files["h5p.json"].async("string");
+  const h5pJson = JSON.parse(h5pJsonStr);
+  const library = h5pJson.mainLibrary.replace("H5P.", "");
+  const converter = new H5P2Text();
+  try {
+    converter.addContentType(new DragText());
+    converter.addContentType(new Blanks());
+  } catch (err) {
+    console.log(err);
   }
 
-  // page initialization
-    document.addEventListener('DOMContentLoaded', function() {
-        let dropZone = document.getElementById('drop_zone');
-        dropZone.addEventListener('dragover', dragOverHandler);
-        dropZone.addEventListener('drop', dropHandler);
-        dropZone.addEventListener('click', fileUploader);
-        this.getElementById('copy_text').addEventListener('click', () => copyContents('html_output'));
-        this.getElementById('copy_answer').addEventListener('click', () => copyContents('answer_output'));
-    });
+  try {
+    const { accordionHtml, solution } = await converter.parse(loaded_files);
+    document.getElementById("preview_container").innerHTML = accordionHtml;
+    document.getElementById("html_output").value = accordionHtml;
+    document.getElementById("answer_preview").innerHTML = solution;
+    document.getElementById("answer_output").value = solution;
+    console.log(accordionHtml);
+    console.log(solution);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const copyContents = (target) => {
+  let copyText = document.getElementById(target);
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+  window.parent.postMessage({ content: copyText.value }, "*");
+  alert("Copied to clipboard");
+};
+
+// page initialization
+document.addEventListener("DOMContentLoaded", function () {
+  let dropZone = document.getElementById("drop_zone");
+  dropZone.addEventListener("dragover", dragOverHandler);
+  dropZone.addEventListener("drop", dropHandler);
+  dropZone.addEventListener("click", fileUploader);
+  this.getElementById("copy_text").addEventListener("click", () =>
+    copyContents("html_output")
+  );
+  this.getElementById("copy_answer").addEventListener("click", () =>
+    copyContents("answer_output")
+  );
+});
