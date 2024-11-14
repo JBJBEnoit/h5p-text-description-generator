@@ -7,6 +7,7 @@ export default class SingleChoiceSet extends ContentType {
     }
 
     parse(contentJson) {
+        
         const content = JSON.parse(contentJson);
         const questions = content.choices;
         const details = this.createDetailsElement();
@@ -16,17 +17,19 @@ export default class SingleChoiceSet extends ContentType {
         questions.forEach((question, index) => {
             const questionElement = document.createElement('li');
             questionElement.innerHTML = question.question;
-            const correctAnswerStr = question.answers[0];
-            const answers = this.shuffleArray(question.answers);
+            const answers = question.answers;
+            const correctAnswerStr = answers[0];
+            console.log(correctAnswerStr);
+            this.shuffleArray(answers);
             const correctAnswerIndex = answers.indexOf(correctAnswerStr);
             const ol = document.createElement('ol');
             ol.type = 'a';
             answers.forEach((answer) => {
                 const li = document.createElement('li');
-                li.textContent = answer.text;
+                li.textContent = this.stripHtml(answer);
                 ol.appendChild(li);
             });
-            questionElement.appendChild(ul);
+            questionElement.appendChild(ol);
             questionList.appendChild(questionElement);
 
             const correctAnswer = document.createElement('li');
