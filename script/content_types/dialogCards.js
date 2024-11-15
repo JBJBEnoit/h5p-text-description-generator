@@ -21,7 +21,7 @@ export default class Dialogcards extends ContentType {
     )}</div>`;
     details.appendChild(mainDescription);
     const answers = [];
-    cards.forEach((card, index) => {
+    cards.forEach((card) => {
       const cardElement = document.createElement("li");
       const cardText = this.stripEnclosingTags(card.text);
       const cardImageAltText = card.imageAltText;
@@ -39,7 +39,7 @@ export default class Dialogcards extends ContentType {
     });
     details.appendChild(cardList);
     const answerList = document.createElement("ol");
-    answers.forEach((answer, index) => {
+    answers.forEach((answer) => {
       const answerElement = document.createElement("li");
       answerElement.textContent = answer;
       answerList.appendChild(answerElement);

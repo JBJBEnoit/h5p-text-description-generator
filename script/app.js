@@ -4,6 +4,9 @@ import SingleChoiceSet from "./content_types/singleChoiceSet.js";
 import MultiChoice from "./content_types/multiChoice.js";
 import Flashcards from "./content_types/flashCards.js";
 import Dialogcards from "./content_types/dialogCards.js";
+import TrueFalse from "./content_types/trueFalse.js";
+import Column from "./content_types/column.js";
+import QuestionSet from "./content_types/questionSet.js";
 import H5P2Text from "./h5p2Text.js";
 
 function isH5PFile(file) {
@@ -86,7 +89,11 @@ const unzipAndReadH5PFile = async (file) => {
     converter.addContentType(new MultiChoice());
     converter.addContentType(new Flashcards());
     converter.addContentType(new Dialogcards());
+    converter.addContentType(new TrueFalse());
+    converter.addContentType(new Column(converter));
+    converter.addContentType(new QuestionSet(converter));
   } catch (err) {
+    document.getElementById("errorContainer").innerHTML = err;
     console.log(err);
   }
 
@@ -99,6 +106,7 @@ const unzipAndReadH5PFile = async (file) => {
     console.log(accordionHtml);
     console.log(solution);
   } catch (err) {
+    document.getElementById("errorContainer").innerHTML = err;
     console.log(err);
   }
 };

@@ -2,6 +2,7 @@
     --primary-color: #4e4e91;
     --secondary-color: #3c3c7a;
     --tertiary-color: #2a2a5a;
+    --error-color: #c13c3c;
     --light-color: #ccc;
     --dark-color: #666;
 }
@@ -71,6 +72,22 @@ h1 {
     display: none;
 }
 
+#errorContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    background-color: var(--error-color);
+    color: white;
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#errorContainer:empty {
+    display: none;
+}
+
 .copy_btn {
 
     background-color: var(--primary-color);
@@ -110,9 +127,6 @@ h1 {
     border: 1px solid var(--dark-color);
 }
 
-/* .preview:empty {
-    display: none;
-} */
 
 label.preview_label {
     animation: fade-in 0.7s;

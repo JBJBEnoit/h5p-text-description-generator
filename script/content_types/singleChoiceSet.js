@@ -38,9 +38,6 @@ export default class SingleChoiceSet extends ContentType {
         this.stripHtml(correctAnswerStr);
       correctAnswersList.appendChild(correctAnswer);
       details.appendChild(questionList);
-      // if (index < questions.length - 1) {
-      //     details.appendChild(document.createElement('hr'));
-      // }
     });
 
     const accordionHtml = this.addLineBreaksToHtml(details.outerHTML);
