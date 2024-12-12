@@ -132,4 +132,11 @@ document.addEventListener("DOMContentLoaded", function () {
   this.getElementById("copy_answer").addEventListener("click", () =>
     copyContents("answer_output")
   );
+  this.getElementById("view_accepted_types_btn").addEventListener("click", (e) => {
+    e.preventDefault();
+    document.getElementById("accepted_types_container").classList.toggle("hidden");
+  });
+  this.getElementById("close_accepted_types").addEventListener("click", () =>
+    document.getElementById("accepted_types_container").classList.toggle("hidden")
+  );  
 });
