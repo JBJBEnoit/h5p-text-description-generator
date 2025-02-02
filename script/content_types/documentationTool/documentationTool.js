@@ -4,6 +4,7 @@ import GoalsPage from "./pageTypes/goalsPage.js";
 import GoalsAssessmentPage from "./pageTypes/goalsAssessmentPage.js";
 import ExportPage from "./pageTypes/exportPage.js";
 
+
 export default class DocumentationTool extends ContentType {
     constructor() {
         super();

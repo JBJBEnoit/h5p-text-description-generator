@@ -1,8 +1,8 @@
-import DocumentationToolPage from './documentationToolPage.js';
-import StandardPageAccordionElement from './standardPageElementTypes/standardPageAccordionElement.js';
-import StandardPageImageElement from './standardPageElementTypes/standardPageImageElement.js';
-import StandardPageTextElement from './standardPageElementTypes/standardPageTextElement.js';
-import StandardPageTextInputElement from './standardPageElementTypes/standardPageTextInputElement.js';
+import DocumentationToolPage from "./documentationToolPage.js";
+import StandardPageAccordionElement from "./standardPageElementTypes/standardPageAccordionElement.js";
+import StandardPageImageElement from "./standardPageElementTypes/standardPageImageElement.js";
+import StandardPageTextElement from "./standardPageElementTypes/standardPageTextElement.js";
+import StandardPageTextInputElement from "./standardPageElementTypes/standardPageTextInputElement.js";
 
 
 export default class StandardPage extends DocumentationToolPage {

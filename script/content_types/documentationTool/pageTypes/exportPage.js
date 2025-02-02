@@ -1,4 +1,4 @@
-import { DocumentationToolPage } from "./documentationToolPage.js";
+import DocumentationToolPage from "./documentationToolPage.js";
 
 export default class ExportPage extends DocumentationToolPage {
     constructor(pageNumber, pageContent) {
