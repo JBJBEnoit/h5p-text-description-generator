@@ -1,4 +1,4 @@
-import DocumentationToolPage from "../documentationToolPage.js";
+import DocumentationToolPage from "./documentationToolPage.js";
 
 export default class GoalsAssessmentPage extends DocumentationToolPage {
 

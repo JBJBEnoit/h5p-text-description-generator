@@ -1,8 +1,8 @@
-import ContentType from "../contentType";
-import StandardPage from "./pageTypes/standardPage";
-import GoalsPage from "./pageTypes/goalsPage";
-import GoalsAssessmentPage from "./pageTypes/goalsAssessmentPage";
-import ExportPage from "./pageTypes/exportPage";
+import ContentType from "../contentType.js";
+import StandardPage from "./pageTypes/standardPage.js";
+import GoalsPage from "./pageTypes/goalsPage.js";
+import GoalsAssessmentPage from "./pageTypes/goalsAssessmentPage.js";
+import ExportPage from "./pageTypes/exportPage.js";
 
 export default class DocumentationTool extends ContentType {
     constructor() {

@@ -1,4 +1,4 @@
-import StandardPageElement from "./standardPageElement";
+import StandardPageElement from "./standardPageElement.js";
 
 export default class StandardPageTextElement extends StandardPageElement {
     

@@ -1,4 +1,4 @@
-import DocumentationToolPage from '../documentationToolPage.js';
+import DocumentationToolPage from './documentationToolPage.js';
 import StandardPageAccordionElement from './standardPageElementTypes/standardPageAccordionElement.js';
 import StandardPageImageElement from './standardPageElementTypes/standardPageImageElement.js';
 import StandardPageTextElement from './standardPageElementTypes/standardPageTextElement.js';
