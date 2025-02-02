@@ -43,7 +43,8 @@ export default class DocumentationTool extends ContentType {
             const newPage = new pageTypes[type](pageCounter, page);
             pageContent.appendChild(newPage.getPageElement());
         }
-
+        details.appendChild(description);
+        details.appendChild(pageContent);
         const accordionHtml = this.addLineBreaksToHtml(details.outerHTML);
         return { accordionHtml, solution: '<p style="text-align: left;">Documentation Tool is not a question/answer H5P content type</p>' };
     }
