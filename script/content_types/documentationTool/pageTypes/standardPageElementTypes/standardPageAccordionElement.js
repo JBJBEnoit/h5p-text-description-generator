@@ -16,7 +16,7 @@ export default class StandardPageAccordionElement extends StandardPageElement {
             const panelHeader = document.createElement("h6");
             panelHeader.textContent = panel.title;
             const panelContent = document.createElement("p");
-            panelContent.textContent = panel.content.params.text;
+            panelContent.innerHTML = panel.content.params.text;
             panelElement.appendChild(panelHeader);
             panelElement.appendChild(panelContent);
             element.appendChild(panelElement);

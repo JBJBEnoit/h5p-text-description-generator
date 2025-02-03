@@ -16,7 +16,7 @@ export default class StandardPage extends DocumentationToolPage {
         const pageElement = document.createElement("div");
         const pageHeader = document.createElement("h5");
         pageHeader.textContent = `Page ${this.pageNumber}: ${this.pageContent.metadata.title}`;
-
+        pageElement.appendChild(pageHeader);
         const elementTypes = {
             "Accordion": StandardPageAccordionElement,
             "Image": StandardPageImageElement,

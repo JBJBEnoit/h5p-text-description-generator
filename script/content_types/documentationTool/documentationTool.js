@@ -40,7 +40,7 @@ export default class DocumentationTool extends ContentType {
                 "DocumentExportPage": ExportPage
             };
             const type = page.library.substring(page.library.indexOf(".")+ 1, page.library.indexOf(" "));
-            const newPage = new pageTypes[type](pageCounter, page);
+            const newPage = new pageTypes[type](pageCounter++, page);
             pageContent.appendChild(newPage.getPageElement());
         }
         details.appendChild(description);

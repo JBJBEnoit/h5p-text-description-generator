@@ -10,7 +10,7 @@ export default class StandardPageTextInputElement extends StandardPageElement {
         const elementHeader = document.createElement("h6");
         elementHeader.textContent = this.pageElementContent.metadata.title || "Text Input Field";
         const taskDescription = document.createElement("p");
-        taskDescription.textContent = this.pageElementContent.params.taskDescription;
+        taskDescription.innerHTML = this.pageElementContent.params.taskDescription;
         const element = document.createElement("div");
         element.appendChild(elementHeader);
         element.appendChild(taskDescription);
