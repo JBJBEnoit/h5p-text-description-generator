@@ -8,9 +8,8 @@ export default class StandardPageTextElement extends StandardPageElement {
 
     getElement() {
         const element = document.createElement("div");
-        if (this.pageElementContent.metadata.title == "Untitled Text") {
+        if (this.pageElementContent.metadata.title != "Untitled Text") {
             const elementHeader = document.createElement("h6");
-            elementHeader.style.color = "red";
             elementHeader.textContent =  this.pageElementContent.metadata.title;
             element.appendChild(elementHeader);
         }
