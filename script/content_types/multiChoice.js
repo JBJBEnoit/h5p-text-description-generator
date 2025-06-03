@@ -8,7 +8,8 @@ export default class MultiChoice extends ContentType {
 
   parse(contentJson) {
     const content = JSON.parse(contentJson);
-    const questionStr = this.stripEnclosingTags(content.question);
+    //console.log("MultiChoice content:", content.question);
+    const questionStr = this.stripEnclosingTags(content.question.replace(/(&(?:amp;)?nbsp;)+(?=\s*<\/(li|p)>)/gi, ''));
     const answers = content.answers;
     this.shuffleArray(answers);
     const details = this.createDetailsElement();
@@ -21,7 +22,8 @@ export default class MultiChoice extends ContentType {
     correctAnswers.innerHTML = "Correct answer(s): ";
     const numCorrect = answers.filter((answer) => answer.correct).length;
     answers.forEach((answer, index) => {
-      const text = this.stripEnclosingTags(answer.text);
+      //console.log("MultiChoice answer:", answer.text);
+      const text = this.stripEnclosingTags(answer.text.replace(/(&(?:amp;)?nbsp;)+(?=\s*<\/(div|p|li)>)/gi, ''));
       const li = document.createElement("li");
       li.textContent = text;
       let correctAppended = 0;

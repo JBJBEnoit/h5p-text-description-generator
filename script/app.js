@@ -105,8 +105,8 @@ const unzipAndReadH5PFile = async (file) => {
     document.getElementById("html_output").value = accordionHtml;
     document.getElementById("answer_preview").innerHTML = solution;
     document.getElementById("answer_output").value = solution;
-    console.log(accordionHtml);
-    console.log(solution);
+    //console.log(accordionHtml);
+    //console.log(solution);
   } catch (err) {
     document.getElementById("errorContainer").innerHTML = err;
     console.log(err);

@@ -21,10 +21,10 @@ export default class ContentType {
     return div.innerHTML;
   }
 
-  createDetailsElement() {
+  createDetailsElement(description) {
     const details = document.createElement("details");
     const summary = document.createElement("summary");
-    summary.innerHTML = "<strong>Text Description</strong>";
+    summary.innerHTML = description ? `<strong>${description}</strong>` : "<strong>Text Description</strong>";
     details.appendChild(summary);
     return details;
   }
