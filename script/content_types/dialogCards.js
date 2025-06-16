@@ -29,7 +29,7 @@ export default class Dialogcards extends ContentType {
         .map((tip) => this.stripEnclosingTags(tip))
         .join(", ");
       const cardAnswer = this.stripEnclosingTags(card.answer);
-      cardElement.innerHTML = `${cardText ? `Dialog Text: ${cardText}` : ""}`;
+      cardElement.innerHTML = `${cardText ? cardImageAltText ? `Dialog Text: ${cardText}` : cardText : ""}`;
       cardElement.innerHTML += `${
         cardImageAltText ? `; Image Alt Text: ${cardImageAltText}` : ""
       }`;
